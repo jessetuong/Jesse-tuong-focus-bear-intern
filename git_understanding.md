@@ -40,3 +40,11 @@
 - Wastes time digging through diffs to figure out what/why
 - Makes bug hunting (bisecting) much harder
 - Erodes trust in the commit history as documentation
+
+# Git bisect:
+
+- What it does: defines the commit that introduced a bug via binary search through history combining with user's manual checks.
+
+- When to use it in real debugging: when a bug appears but you don't know when it was first appeared and how (such as a function worked last week, but after a few commits in the past week, it is broken). It's especially useful in large repos with hundreds of commits where the bug's origin isn't obvious from recent changes alone.
+
+- Comparing to manually reviewing commits: manual review is linear (check every commit one by one) and slow in a large history; bisect is logarithmic — for 100 commits, manual review could take 100 checks, bisect takes about 7.
