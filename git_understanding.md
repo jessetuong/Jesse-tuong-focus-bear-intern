@@ -70,3 +70,24 @@
 - cherry-pick can cause conflicts if the target branch has diverged, just like a merge — it's not always clean
 - checkout -- <file> silently overwrites uncommitted changes to that file with no undo, which feels riskier once you've tried it
 - blame output can point to a large refactor/formatting commit rather than the "real" author, if the file was reformatted at some point
+
+# Brnaching and Team collaboration:
+
+## Why pushing directly to main is problematic
+
+- Skip the review step, which makes bugs or mistakes in the brnach go straight into main codebase and other teammates can not validate that.
+- No safety net — if something breaks, it's already live for the whole team
+- No history of why a change happened (no PR discussion trail)
+- The mistake of one person will go straight into the main codebase and affect the whole team's progress
+
+## How branches help with reviewing code
+
+- Changes in one person's work remain isolated, which allows them to keep working on their problem while the main codebase/progress remain unchanged.
+- Let teammates review a PR before it merges, catching bugs/style issues early
+- If a branch failed, the team could simply discard the branch without affecting the main progress
+
+## If two people edit the same file on different branches
+
+- Each can work independently without affecting the other
+- When one branch merges first, it's fine
+- When the second branch merges, Git tries to auto-merge; if both touched the same lines, it results in a merge conflict that has to be manually resolved before the merge completes — if they touched different lines/parts of the file, Git usually merges both changes automatically
