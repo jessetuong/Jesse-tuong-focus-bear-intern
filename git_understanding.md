@@ -1,7 +1,7 @@
 # Git experience:
 - On the main branch, I changed a line to "Jesse has 46 apples" while on another branch, I changed that line to "Jesse has 45 apples", so when I merged them together, it caused to conflictts because Git didn't know which version it should keep.
 - I resolved it on GitHub website by reviewing the Pull Request and decided to keep the version on main branch by clicking "Keep the incoming change".
-- In thsi exercise, I learned how to switch between 2 branches, create pull request, and resolve merge conflicts by using GitHub website.
+- In this exercise, I learned how to switch between 2 branches, create pull request, and resolve merge conflicts by using GitHub website.
 
 ## Why PRs are important in a team workflow
 
@@ -48,3 +48,25 @@
 - When to use it in real debugging: when a bug appears but you don't know when it was first appeared and how (such as a function worked last week, but after a few commits in the past week, it is broken). It's especially useful in large repos with hundreds of commits where the bug's origin isn't obvious from recent changes alone.
 
 - Comparing to manually reviewing commits: manual review is linear (check every commit one by one) and slow in a large history; bisect is logarithmic — for 100 commits, manual review could take 100 checks, bisect takes about 7.
+
+# Advanced Git commands:
+
+## What each command does
+
+- git checkout main -- <file> — pulls just one file's content from main into your current branch, without touching anything else you've changed
+- git cherry-pick <commit> — copies a single specific commit's changes onto your current branch, without merging the whole source branch
+- git log — shows the commit history (hash, author, date, message), so you can trace how the project evolved
+- git blame <file> — shows, line by line, which commit and author last changed each line
+
+## When you'd use them in a real project
+
+- checkout -- <file>: you've messed up one file mid-experiment and just want to reset it back to main's version without losing other unrelated work
+- cherry-pick: a critical bug fix landed on another branch and you need it on main immediately, without pulling in that branch's other unfinished work
+- log: tracing when/why a feature was added, or reviewing what changed before a release
+- blame: tracking down who to ask about a confusing line of code, or finding which commit introduced a bug (often paired with bisect)
+
+## What's likely to surprise you while testing (things to watch for)
+
+- cherry-pick can cause conflicts if the target branch has diverged, just like a merge — it's not always clean
+- checkout -- <file> silently overwrites uncommitted changes to that file with no undo, which feels riskier once you've tried it
+- blame output can point to a large refactor/formatting commit rather than the "real" author, if the file was reformatted at some point
