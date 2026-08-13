@@ -22,3 +22,21 @@
 - Reviewers often push back on edge cases or missing tests, not just style
 - Discussion threads show maintainers asking for justification/benchmarks before approving bigger changes.
 - Even small PRs can take multiple rounds of revision before merging.
+
+## What makes a good commit message
+
+- Short summary line (~50 chars), imperative mood ("Add", not "Added"), have an brief description of what has changed.
+- Explains why, not just what, when it's not obvious
+- One logical change per commit
+
+## How it helps team collaboration
+
+- Lets teammates understand history without reading every diff
+- Makes git blame/git log actually useful for tracing bugs
+- Speeds up code review and onboarding
+
+## How poor messages cause issues later
+
+- Wastes time digging through diffs to figure out what/why
+- Makes bug hunting (bisecting) much harder
+- Erodes trust in the commit history as documentation
