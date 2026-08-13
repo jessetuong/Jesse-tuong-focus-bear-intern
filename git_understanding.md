@@ -21,4 +21,4 @@
 
 - Reviewers often push back on edge cases or missing tests, not just style
 - Discussion threads show maintainers asking for justification/benchmarks before approving bigger changes
-- Even small PRs can take multiple rounds of revision before merging
+- Even small PRs can take multiple rounds of revision before mergingg
