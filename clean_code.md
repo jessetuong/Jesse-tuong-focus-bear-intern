@@ -75,3 +75,18 @@ getUsersReportByStatus(users, "inactive");
 - Issues with the duplicated code: the filter/map/join logic was copy-pasted with only the status string changed — if any logic in the function needed to change (for example: sort names, change the separator), you'd have to remember to update it in both places (and potentially many places in a big project). It's very clear that in those cases, it's easy to fix one copy while forgetting the other, causing inconsistent behavior. 
 
 - How refactoring improved maintainability: there's now only a single line of code to build a user report, which means any future change such as new field, different formatting, or different logic happens once and applies everywhere it's used. Moreover, if the developer wanted to add a report for a new status (for example: "pending") requires zero new function, just a new function call.
+
+# Commenting and documentation:
+
+## When you should add comments
+
+- To explain a decision that is not obvious, or business rule (not what the code does)
+- Documenting public functions/APIs (parameters, return values, side effects) for other developers using them
+- Flagging known limitations, edge cases, or TODOs that aren't obvious from the code itself
+- Explaining complex algorithms or math (codes that are not usually understandable by only reading it)
+
+## When you should avoid comments and improve the code instead
+
+- Code lines that have clear meaning and don't need any further explanation (for example: // increment i above i++)
+- If you need a comment to explain what a function does, that's usually a sign the function/variable names aren't descriptive enough — rename instead
+- If a comment explains a big block of mixed logic, that's often a sign the block should be broken into smaller, well-named functions instead (the function names become the documentation)
