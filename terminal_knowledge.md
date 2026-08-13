@@ -1,0 +1,3 @@
+- I chose iTerm2 + zsh since it's the most common one to use on Mac.
+- In terms of customizations I made, I changed the theme and plugin of the terminal on iTerm2.
+- The most useful command I learned today was "open -e ~/.zshrc", where it can open the zshrc file which allows me to change my terminal theme and plugin from a range of many themes and plugins, which helps me to decorate my terminal, making it more colourful and helps me to not get tired easily when looking at a pure black normal terminal.
