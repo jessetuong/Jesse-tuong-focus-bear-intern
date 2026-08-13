@@ -31,3 +31,12 @@ function getExpiredItemsAboveThreshold(items, scoreThreshold, sortDescending) {
   return filteredItems;
 }
 
+# Naming variables and functions:
+
+- What makes a good name: it's specific enough that someone reading it could understands its purpose and meaning without needing to trace through the logic or check the calling code. It also has to follow the naming convention of the project (camelCase or snake_case) to ensure consistency. Besides, it has to follow basic principles such as functions should be verb-based, variables should be noun-based, and Booleans should be a yes/no question.
+
+- Issues from poor names: wastes developers' or reviewers' time to explain the meaning of each poorly-named variable, increases bug risk (since developers could misuse a variable because of its unclear naming), makes refactoring riskier since it's unclear what a name actually represents, and makes onboarding new team members slower.
+
+- How refactoring improved readability: in the example ("Example of messy code I found on the internet:"), the meaning of "calc(d, r)" is unclear and it makes developers unsure of what is being calculated here. After refining it, the refined function name and parameters: calculateAnnualInterest(principal, monthlyRate) tell you exactly what the function does and what each parameter means, just from the signature so users won't have to read the whole function to understand what it does.
+
+
