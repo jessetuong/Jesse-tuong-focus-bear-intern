@@ -71,7 +71,7 @@
 - checkout -- <file> silently overwrites uncommitted changes to that file with no undo, which feels riskier once you've tried it
 - blame output can point to a large refactor/formatting commit rather than the "real" author, if the file was reformatted at some point
 
-# Brnaching and Team collaboration:
+# Branching and Team collaboration:
 
 ## Why pushing directly to main is problematic
 
@@ -91,3 +91,21 @@
 - Each can work independently without affecting the other
 - When one branch merges first, it's fine
 - When the second branch merges, Git tries to auto-merge; if both touched the same lines, it results in a merge conflict that has to be manually resolved before the merge completes — if they touched different lines/parts of the file, Git usually merges both changes automatically
+
+# Git concepts: staging and committing:
+
+## Staging vs. committing
+
+- Staging (git add) — marks changes you made and want to save in the next commit. It acts as a holding area, nothing is saved to history yet. 
+- Committing (git commit) — actually saves the staged changes as a permanent snapshot in your repo's history
+
+## Why Git separates these steps
+
+- Lets you build a commit deliberately — you might edit 5 files but only want 2 of them in this commit. For example, you refined a few parts in your index.html file, and fixed a few parts in your javascript files. You just want to commit changes in index.html now and name it accordingly, and then commit the changes in javascript file later. By building commits deliberately like this, you can easily go back and track errors by using git log and git checkout later.
+- Moreover, it enables partial commits — even within one file, you can stage only certain changes (git add -p)
+
+## When you'd stage without committing
+
+- You've made several unrelated changes and want to commit them separately with distinct messages (e.g., a bug fix and a typo fix in different files)
+- You want to review your changes one more time before finalizing the commit
+- You're mid-task and want to "checkpoint" what's ready without yet writing a commit message
