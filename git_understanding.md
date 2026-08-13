@@ -65,9 +65,8 @@
 - log: tracing when/why a feature was added, or reviewing what changed before a release
 - blame: tracking down who to ask about a confusing line of code, or finding which commit introduced a bug (often paired with bisect)
 
-## What's likely to surprise you while testing (things to watch for)
+## What suprised me while testing
 
 - cherry-pick can cause conflicts if the target branch has diverged, just like a merge — it's not always clean
 - checkout -- <file> silently overwrites uncommitted changes to that file with no undo, which feels riskier once you've tried it
 - blame output can point to a large refactor/formatting commit rather than the "real" author, if the file was reformatted at some point
-- Testing line
