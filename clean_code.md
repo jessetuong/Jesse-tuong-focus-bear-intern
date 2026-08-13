@@ -45,3 +45,33 @@ function getExpiredItemsAboveThreshold(items, scoreThreshold, sortDescending) {
 - Why breaking down functions is beneficial: each function would be independently testable and reusable, bugs and errors are easier to be tracked since the big function now were broken into pieces (so you know exactly which function to check), and the top-level function reads like a clear summary of the process instead of a lot of lines of code.
 
 - How refactoring improved structure: the top-level function went from a big chunk of code to meaningfully-named small steps (which are small functions) which forms a readable sequence, helps new developers to understand it rightaway. Each small function can now be tested and reused on its own.
+
+# Avoid code duplication:
+
+## An example of duplicated code
+function getActiveUsersReport(users) {
+  const active = users.filter(u => u.status === "active");
+  const names = active.map(u => u.name.toUpperCase());
+  return names.join(", ");
+}
+
+function getInactiveUsersReport(users) {
+  const inactive = users.filter(u => u.status === "inactive");
+  const names = inactive.map(u => u.name.toUpperCase());
+  return names.join(", ");
+}
+
+## After refactoring it
+function getUsersReportByStatus(users, status) {
+  const filtered = users.filter(u => u.status === status);
+  const names = filtered.map(u => u.name.toUpperCase());
+  return names.join(", ");
+}
+
+// usage:
+getUsersReportByStatus(users, "active");
+getUsersReportByStatus(users, "inactive");
+
+- Issues with the duplicated code: the filter/map/join logic was copy-pasted with only the status string changed — if any logic in the function needed to change (for example: sort names, change the separator), you'd have to remember to update it in both places (and potentially many places in a big project). It's very clear that in those cases, it's easy to fix one copy while forgetting the other, causing inconsistent behavior. 
+
+- How refactoring improved maintainability: there's now only a single line of code to build a user report, which means any future change such as new field, different formatting, or different logic happens once and applies everywhere it's used. Moreover, if the developer wanted to add a report for a new status (for example: "pending") requires zero new function, just a new function call.
