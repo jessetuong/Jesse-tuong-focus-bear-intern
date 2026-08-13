@@ -40,3 +40,8 @@ function getExpiredItemsAboveThreshold(items, scoreThreshold, sortDescending) {
 - How refactoring improved readability: in the example ("Example of messy code I found on the internet:"), the meaning of "calc(d, r)" is unclear and it makes developers unsure of what is being calculated here. After refining it, the refined function name and parameters: calculateAnnualInterest(principal, monthlyRate) tell you exactly what the function does and what each parameter means, just from the signature so users won't have to read the whole function to understand what it does.
 
 
+# Writing small, focus functions:
+
+- Why breaking down functions is beneficial: each function would be independently testable and reusable, bugs and errors are easier to be tracked since the big function now were broken into pieces (so you know exactly which function to check), and the top-level function reads like a clear summary of the process instead of a lot of lines of code.
+
+- How refactoring improved structure: the top-level function went from a big chunk of code to meaningfully-named small steps (which are small functions) which forms a readable sequence, helps new developers to understand it rightaway. Each small function can now be tested and reused on its own.
