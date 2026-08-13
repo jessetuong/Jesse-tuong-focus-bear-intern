@@ -1,0 +1,7 @@
+# Clean code principles:
+
+- Simplicity — solve the problem while keeping it as simple as possible (avoid complexity). Also, avoid clever one-liners or unnecessary abstraction layers that make code harder to follow than a plain, direct approach
+- Readability — code is read far more often than it's written. Thus follow these principles to improve the code's readability: use descriptive names, consistent formatting, and small functions so intent is obvious without extensive comments
+- Maintainability — structure code so future changes (bug fixes, new features) are easy and low-risk — avoid tight coupling, magic numbers, and duplicated logic scattered everywhere
+- Consistency — strictly follow the project's or team's style guide and naming conventions (naming, indentation, file structure) even if changing to another style would fit your brainstorming process more and could improve your work performace. Have to keep in mind that consistency across a codebase matters more than individual preference
+- Efficiency — write reasonably performant code, but don't over-optimize prematurely at the cost of readability (have to balance between efficiency and readability of the codebase). Optimize only where profiling shows it actually matters
