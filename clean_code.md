@@ -117,9 +117,51 @@ function getDiscountedPrice(price, discountPercent) {
 - Without guard clauses, invalid input either crashes the program with an unhelpful error, or silently produces wrong results (e.g., NaN, an empty object) that surface as bugs much later, far from the actual cause
 - Deeply nested if blocks (instead of early returns/guard clauses) make it hard to see what's actually being validated
 
-- How handling errors improves reliability
+- How handling errors improves reliability:
 
 - Guard clauses catch bad input immediately at the function boundary, with a clear, specific error message pointing at the real problem
 - Failing fast and loud is easier to debug than a silent wrong result that only causes issues downstream
 - Makes the function's assumptions explicit — anyone reading it can see exactly what inputs are considered valid, without guessing
 - Reduces the "happy path only" nesting, since guard clauses return early and let the main logic stay flat and readable
+
+# Refactoring code for simplicity:
+
+- An example of an overly complicated code:
+
+function getUserStatus(user) {
+  if (user != null) {
+    if (user.age !== undefined) {
+      if (user.age >= 18) {
+        if (user.isActive == true) {
+          return "active-adult";
+        } else {
+          return "inactive-adult";
+        }
+      } else {
+        if (user.isActive == true) {
+          return "active-minor";
+        } else {
+          return "inactive-minor";
+        }
+      }
+    }
+  }
+  return "unknown";
+}
+
+- After refactoring it:
+
+function getUserStatus(user) {
+  if (!user || user.age === undefined) {
+    return "unknown";
+  }
+
+  const ageGroup = user.age >= 18 ? "adult" : "minor";
+  const activityStatus = user.isActive ? "active" : "inactive";
+
+  return `${activityStatus}-${ageGroup}`;
+}
+
+- What made the original code complex: four levels of nested if statements require users to remember all conditions in their head at once when they read the code - which will probably take users longer time to understand it. While it only needs 2 independent boolean checks (age group, activity status) instead of 4 nested if statements like above.
+
+- How refactoring improved it: a guard clause handles the invalid case immediately and exits, flattening the rest of the logic. Extracting ageGroup and activityStatus as named variables makes each condition's meaning explicit, and combining them into one return statement eliminates four duplicate return branches down to one — same behavior, far less code to read and reason about.
