@@ -165,3 +165,46 @@ function getUserStatus(user) {
 - What made the original code complex: four levels of nested if statements require users to remember all conditions in their head at once when they read the code - which will probably take users longer time to understand it. While it only needs 2 independent boolean checks (age group, activity status) instead of 4 nested if statements like above.
 
 - How refactoring improved it: a guard clause handles the invalid case immediately and exits, flattening the rest of the logic. Extracting ageGroup and activityStatus as named variables makes each condition's meaning explicit, and combining them into one return statement eliminates four duplicate return branches down to one — same behavior, far less code to read and reason about.
+
+# Identifying and fixing code smells:
+
+- An example of a code with code smells:
+
+function getShippingCost(weight) {
+  if (weight > 20) {
+    return weight * 5.5;
+  }
+  return weight * 3.2;
+}
+
+function getExpressShippingCost(weight) {
+  if (weight > 20) {
+    return weight * 5.5 * 1.5;
+  }
+  return weight * 3.2 * 1.5;
+}
+
+- After refactoring it:
+
+const HEAVY_WEIGHT_THRESHOLD = 20;
+const STANDARD_RATE = 3.2;
+const HEAVY_RATE = 5.5;
+const EXPRESS_MULTIPLIER = 1.5;
+
+function getBaseShippingRate(weight) {
+  return weight > HEAVY_WEIGHT_THRESHOLD ? HEAVY_RATE : STANDARD_RATE;
+}
+
+function getShippingCost(weight) {
+  return weight * getBaseShippingRate(weight);
+}
+
+function getExpressShippingCost(weight) {
+  return getShippingCost(weight) * EXPRESS_MULTIPLIER;
+}
+
+- Code smells found: magic numbers for the weight threshold and rates, and duplicated tier logic between the two shipping functions.
+
+- How refactoring improved it: named constants make each value self-explanatory (no more guessing what 5.5 or 20 means), and extracting getBaseShippingRate removes the duplicated conditional — getExpressShippingCost now just reuses getShippingCost instead of repeating the logic.
+
+- How this helps future debugging: if a shipping rate changes, you update one constant instead of hunting through multiple functions for every occurrence of the old number; a bug in the rate logic only needs to be fixed in one place.
