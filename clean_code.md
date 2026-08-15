@@ -90,3 +90,36 @@ getUsersReportByStatus(users, "inactive");
 - Code lines that have clear meaning and don't need any further explanation (for example: // increment i above i++)
 - If you need a comment to explain what a function does, that's usually a sign the function/variable names aren't descriptive enough — rename instead
 - If a comment explains a big block of mixed logic, that's often a sign the block should be broken into smaller, well-named functions instead (the function names become the documentation)
+
+# Handling errors & edge cases:
+- Example of a function without error handling:
+
+function getDiscountedPrice(price, discountPercent) {
+  return price - (price * discountPercent / 100);
+}
+
+- After refactoring it: 
+
+function getDiscountedPrice(price, discountPercent) {
+  if (typeof price !== "number" || price < 0) {
+    throw new Error("price must be a non-negative number");
+  }
+  if (typeof discountPercent !== "number" || discountPercent < 0 || discountPercent > 100) {
+    throw new Error("discountPercent must be a number between 0 and 100");
+  }
+
+  return price - (price * discountPercent / 100);
+}
+
+- What was the issue with the original code:
+
+- Functions often assume inputs are always valid — no checks for null/undefined, empty arrays, wrong types, or out-of-range values
+- Without guard clauses, invalid input either crashes the program with an unhelpful error, or silently produces wrong results (e.g., NaN, an empty object) that surface as bugs much later, far from the actual cause
+- Deeply nested if blocks (instead of early returns/guard clauses) make it hard to see what's actually being validated
+
+- How handling errors improves reliability
+
+- Guard clauses catch bad input immediately at the function boundary, with a clear, specific error message pointing at the real problem
+- Failing fast and loud is easier to debug than a silent wrong result that only causes issues downstream
+- Makes the function's assumptions explicit — anyone reading it can see exactly what inputs are considered valid, without guessing
+- Reduces the "happy path only" nesting, since guard clauses return early and let the main logic stay flat and readable
