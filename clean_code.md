@@ -208,3 +208,35 @@ function getExpressShippingCost(weight) {
 - How refactoring improved it: named constants make each value self-explanatory (no more guessing what 5.5 or 20 means), and extracting getBaseShippingRate removes the duplicated conditional — getExpressShippingCost now just reuses getShippingCost instead of repeating the logic.
 
 - How this helps future debugging: if a shipping rate changes, you update one constant instead of hunting through multiple functions for every occurrence of the old number; a bug in the rate logic only needs to be fixed in one place.
+
+# Unit test reflection:
+
+- The function I tested:
+
+function getBaseShippingRate(weight) {
+  return weight > HEAVY_WEIGHT_THRESHOLD ? HEAVY_RATE : STANDARD_RATE;
+}
+
+function getShippingCost(weight) {
+  return weight * getBaseShippingRate(weight);
+}
+
+module.exports = { getBaseShippingRate, getShippingCost };
+
+- The unit tests I wrote:
+
+const { getBaseShippingRate, getShippingCost } = require('./main');
+
+describe("Unit tests", () => {
+  test("return standard rate for numbers equal threshold", () => {
+    expect(getBaseShippingRate(20).toBe(3.2));  
+  });
+
+  test("calculates cost using standard rate", () => {
+    expect(getShippingCost(10)).toBe(32);
+  });
+})
+
+- How unit tests help keep code clean: in order for unit tests to be successfully ran, functions should be small and single-purpose since complex functions are hard to test — this naturally pushes me toward the same clean-code principles from earlier tasks (small functions, clear inputs/outputs). Tests also act as living documentation of expected behavior. Besides, unit test can make functions run isolately, which allows them to be tested quicker (don't need to run the other parts of the code to test its output)
+
+- Issues found while testing: edge cases are easy to miss when just eyeballing a function — for example, the "weight exactly at the threshold" case (20) isn't obviously handled until you write a test for it, which confirms > vs >= behaves as intended. Writing the zero-weight test also surfaces whether the function handles that input sensibly rather than assuming it does.
