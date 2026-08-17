@@ -10,7 +10,7 @@
 # Why a user might choose Focus Bear over competitors
 
 - Users who don't want to juggle three separate apps (one for blocking, one for planning, one for routines) can use Focus Bear instead — it's the only one that covers all three
-- Users who want flexible blocking (adjustable strictness levels) rather than Cold Turkey's all-or-nothing lockout
+- Users who want flexible blocking (adjustable strictness levels) rather than Cold Turkey's all or nothing lockout
 
 # Research notes per competitor
 
@@ -21,9 +21,9 @@
 
 # One feature other apps have that Focus Bear doesn't
 
-- Tiimo's AI Co-Planner: turns a spoken/typed brain dump into an auto-scheduled plan — more sophisticated task planning than what Focus Bear appears to offer. Focus Bear is stronger on blocking and routines than on flexible day-to-day task breakdown
-- Cold Turkey's "Frozen Turkey" nuclear lockout: fully locks the computer, with no self-override — Focus Bear has no equivalent extreme mode
+- Tiimo's AI Co Planner: turns a spoken/typed brain dump into an auto scheduled plan, which is more sophisticated task planning than what Focus Bear appears to offer. Focus Bear is stronger on blocking and routines than on flexible day-to-day task breakdown
+- Cold Turkey's "Frozen Turkey" nuclear lockout: fully locks the computer, with no self-override. And Focus Bear has no equivalent extreme mode
 
 # One improvement Focus Bear could make
 
-- Add an optional extreme/locked blocking mode similar to Cold Turkey's "Frozen Turkey" — likely one of the more achievable near-term improvements since it builds on Focus Bear's existing blocking feature rather than requiring new functionality
+- Add an optional extreme blocking mode similar to Cold Turkey's "Frozen Turkey", which is likely one of the more achievable improvements in near term since it builds on Focus Bear's existing blocking feature rather than requiring new functionality
