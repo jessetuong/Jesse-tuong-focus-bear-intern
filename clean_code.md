@@ -240,3 +240,23 @@ describe("Unit tests", () => {
 - How unit tests help keep code clean: in order for unit tests to be successfully ran, functions should be small and single-purpose since complex functions are hard to test — this naturally pushes me toward the same clean-code principles from earlier tasks (small functions, clear inputs/outputs). Tests also act as living documentation of expected behavior. Besides, unit test can make functions run isolately, which allows them to be tested quicker (don't need to run the other parts of the code to test its output)
 
 - Issues found while testing: edge cases are easy to miss when just eyeballing a function — for example, the "weight exactly at the threshold" case (20) isn't obviously handled until you write a test for it, which confirms > vs >= behaves as intended. Writing the zero-weight test also surfaces whether the function handles that input sensibly rather than assuming it does.
+
+# Code formatting reflection:
+
+## Why is code formatting important?
+
+- Because it makes source code easier to read, and understand, which will then make it easier to be maintained, and reviewed. When developers follow the same formatting conventions, they can focus on the logic of the program instead of being distracted by different indentation, spacing, quotation, or naming styles.
+
+- Its importance is emphasized in team environment since it helps reduce the unnecessary differences between developers code by enforcing a shared style in eveyrone's code, which makes changes are easier to review. 
+
+## What issues did the linter detect?
+
+- ESLint identified several code-quality and style issues in the project. For example, when I added airbnb extension to my code in the eslintrc.js file and I initiated a variable in my code using the "var" syntax, it threw an error and required me to change it. The error was resolved by changing var to const which follow the airbnb framework.
+
+- The linter was useful because it identified problems that were easy to overlook during manual code review. In addition to formatting problems, ESLint can identify patterns that may indicate potential bugs or make the code more difficult to maintain.
+
+## Did formatting the code make it easier to read?
+
+- Yes. Formatting the code made it easier to read because the structure of the code became more consistent. Indentation, spacing, quotations, and line breaks were applied consistently throughout the project.
+
+- Overall, using ESLint and Prettier improved the readability and maintainability of the codebase and provided a more consistent development standard.
