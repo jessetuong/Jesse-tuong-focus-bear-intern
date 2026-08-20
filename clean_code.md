@@ -260,3 +260,29 @@ describe("Unit tests", () => {
 - Yes. Formatting the code made it easier to read because the structure of the code became more consistent. Indentation, spacing, quotations, and line breaks were applied consistently throughout the project.
 
 - Overall, using ESLint and Prettier improved the readability and maintainability of the codebase and provided a more consistent development standard.
+
+# CI/CD reflection:
+
+## Purpose of CI/CD
+
+- CI automatically tests code every time it's pushed following the rules that your team made, which helps catching integration issues early instead of at merge time
+- CD automatically packages and ships code that passes CI to staging and production steps, reducing manual release steps
+- Together they let teams finalise small changes more frequently while ensuring that each one was verified before it reaches users
+
+## How automating style checks improves project quality
+
+- Every push gets checked consistently and automatically, which don't require developers to run lint manually
+- Catches style/quality issues before code review, so reviewers just have to focus on logic instead of formatting, styling
+- Ensure the code style is consistent when more developers join
+- Can block merges automatically if checks fail, enforcing developers to follow the standards automatically
+
+## Challenges with enforcing checks in CI/CD
+
+- False positives/overly strict rules can slow down legitimate work and frustrate developers
+- Flaky tests can block valid PRs, eroding trust in the pipeline
+- Slow pipelines discourage frequent small commits (defeats the purpose of CI)
+
+## CI/CD differences: small projects vs. large teams
+
+- Small projects: often a single simple pipeline (lint + test), maybe manual deploys, fewer environments, less need for elaborate approval gates
+- Large teams: multiple pipelines/stages (unit tests, integration tests, security scans, staged rollouts), required reviewer approvals before merge, separate staging/production environments, feature flags for gradual rollout, and often dedicated infra/DevOps ownership of the pipeline itself rather than each developer managing it
