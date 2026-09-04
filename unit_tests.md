@@ -43,3 +43,7 @@ needs `getRepositoryToken(User)`, not the plain `Repository` class. Also
 remembering to `await` the `.rejects` / `.resolves` assertions, and a tooling
 error where Jest couldn't parse `@nestjs/bullmq` because it ships as ES modules. Later, I had to 
 delete the whole controller.specs because of that bullmq issue.
+
+## Proof of written test:
+
+
