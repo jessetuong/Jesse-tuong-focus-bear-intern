@@ -10,7 +10,7 @@
   hard-to-hit cases on demand: a 500 error, an empty list, malformed JSON, a
   slow response.
 - Tests don't create real records, spend API quota, or need
-  real credentials tokens.
+  real credentials tokens - it won't affect the real project.
 
 
 ## What are some common pitfalls when testing asynchronous code?
@@ -30,3 +30,16 @@
   look green. Assert the error UI (or the thrown error) explicitly.
 - **Mocking at the wrong seam.** Mocking `global.fetch` when the component talks
   to it through a helper module (or vice versa), so the mock never takes effect.
+
+## Why is automated testing important in software development?
+
+- It catches regressions automatically as the code changes, makes it safe when developers want to update anything, documents how code is meant to behave, and gives fast feedback in CI so changes can be verified automatically without the need of human interactions. 
+
+## What did you find challenging when writing your first Jest test?
+
+- Mostly the dependency injection: you can't just `new` a NestJS service in a test,
+you build a testing module and provide every dependency — and the TypeORM repo
+needs `getRepositoryToken(User)`, not the plain `Repository` class. Also
+remembering to `await` the `.rejects` / `.resolves` assertions, and a tooling
+error where Jest couldn't parse `@nestjs/bullmq` because it ships as ES modules. Later, I had to 
+delete the whole controller.specs because of that bullmq issue.
