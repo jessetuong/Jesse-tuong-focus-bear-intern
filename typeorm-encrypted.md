@@ -26,6 +26,6 @@ encrypted column.
 
 ## Trade-offs: database-level vs application-level encryption
 
-- Database-level encryption (at rest / TDE) is free and invisible — queries and indexes work normally, no real overhead. But it only protects a stolen disk or backup; anyone with a live DB connection (leaked creds, injection, dumps) still sees plaintext.
+- Database-level encryption is free and invisible — queries and indexes work normally, no real overhead. But it only protects a stolen disk or backup; anyone with a live DB connection (leaked creds, injection, dumps) still sees plaintext.
 
 - Application-level encryption (typeorm-encrypted) keeps the data as ciphertext everywhere except inside the app, with the key stored separately from the database — so it survives a database compromise. The cost: you can't filter, sort, or index encrypted columns, values are larger, raw SQL debugging shows nothing useful, and you have to manage the key and its rotation.
