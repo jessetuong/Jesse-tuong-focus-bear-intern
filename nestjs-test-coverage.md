@@ -10,7 +10,7 @@ makes "did you test this?" a build check instead of a review argument, and keeps
 critical backend paths from reaching production with zero tests.
 
 ## How can high test coverage still lead to untested functionality?
-Coverage only records that a line *ran*, not that anything was *checked*. A test
+Coverage only records that a line ran, not that anything was checked. A test
 with no assertions (or only `expect(x).toBeDefined()`) executes the code and
 counts as covered while verifying almost nothing. Branches, error paths, and
 specific return values can all be "covered" yet effectively untested.
